@@ -1,0 +1,22 @@
+version: '3'
+services:
+  blueocean:
+    image: jenkinsci/blueocean:1.17.0
+    container_name: blueocean.io
+    restart: always
+    privileged: true
+    environment:
+      JAVA_OPTS: -Duser.timezone=Asia/Shanghai
+    ports:
+      - 8060:8080
+      - 50000:50000
+    volumes:
+      - ./home:/home
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/hosts:/etc/hosts
+      - ./jenkins_home:/var/jenkins_home
+      - /etc/localtime:/etc/localtime
+# networks:
+#   default:
+#     external:
+#       name: sec_net
